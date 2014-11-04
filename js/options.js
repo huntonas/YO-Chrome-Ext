@@ -13,17 +13,38 @@ window.onload = function() {
   var savedKey = null;
 
   //Get Saved API key and put in input on page load
-  alertArea.innerHTML = function () {
-    var deffered = new
-  }
 
-  function getSavedAPIKey () {
+  var apiKeys = new Object();
+
+  apiKeys.getKey = function() {
+    var promise = $.Deffered();
+
     chrome.storage.sync.get("yo_API_key", function(result) {
-      savedKey = result["yo_API_key"];
-      console.log(result["yo_API_key"]);
+      promise = result["yo_API_key"];
     });
-  }
 
+    return promise;
+  }
+alertArea.innerHTML = apiKeys.getKey();
+/*
+function getSavedAPIKey () {
+  chrome.storage.sync.get("yo_API_key", function(result) {
+    savedKey = result["yo_API_key"];
+    console.log(result["yo_API_key"]);
+  });
+}
+  function apiKey () {
+    getKey: function () {
+      var promise = $.Deffered();
+
+      chrome.storage.sync.get("yo_API_key", function(result) {
+        promise = result["yo_API_key"];
+      });
+
+      return promise;
+    }
+  };
+*/
   //Functions
   function saveYoOptions () {
     //declare the needed inputs
