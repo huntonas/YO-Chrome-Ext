@@ -10,23 +10,18 @@ window.onload = function() {
 
   var yo_API_key = document.getElementById("yo_API_key").value;
   var alertArea = document.getElementById("yo_alert_area");
+  var savedKey = null;
 
   //Get Saved API key and put in input on page load
-  alertArea.innerHTML = getSavedAPIKey();
+  alertArea.innerHTML = function () {
+    var deffered = new
+  }
 
   function getSavedAPIKey () {
-
     chrome.storage.sync.get("yo_API_key", function(result) {
-      return result["yo_API_key"];
-    }).then(function (result) {
-      if (result.length > 0) {
-        return result;
-      }
-      else {
-        return "No API key saved!";
-      }
+      savedKey = result["yo_API_key"];
+      console.log(result["yo_API_key"]);
     });
-
   }
 
   //Functions
